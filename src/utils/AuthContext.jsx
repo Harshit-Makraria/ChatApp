@@ -64,7 +64,7 @@
                 );
                 console.log("User registered!", response);
         
-                const redirectUrl = "http://localhost:5173/verify"; // Redirect URL for the verification page
+                const redirectUrl = "http://chat-app-hm.vercel.app/verify"; // Redirect URL for the verification page
                 const token = await account.createMagicURLToken(userId, credentials.email, redirectUrl);
                 console.log("Magic URL Token created!", token);
                 alert("Check email for verification.");
