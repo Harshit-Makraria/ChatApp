@@ -48,23 +48,32 @@ const Room = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const permissions = [Permission.write(Role.user(user.$id))];
         const payload = {
             user_id: user.$id,
             username: user.name,
             body: messageBody
         };
-
-        await databases.createDocument(
-            DATABASE_ID,
-            COLLECTION_ID_MESSAGES,
-            ID.unique(),
-            payload,
-            permissions
-        );
-
-        setMessageBody('');
+    
+        try {
+            const uniqueId = ID.unique(); 
+            console.log(uniqueId) // Generate a unique ID
+            await databases.createDocument(
+                DATABASE_ID,
+                COLLECTION_ID_MESSAGES,
+                uniqueId,  // Pass the unique ID here
+                payload,
+                permissions
+            );
+            setMessageBody('');
+        } catch (error) {
+            if (error.response && error.response.status === 409) {
+                console.error('Document with the requested ID already exists. Retry with a different ID.');
+            } else {
+                console.error('Error creating document:', error);
+            }
+        }
     };
 
     const deleteMessage = async (id) => {
