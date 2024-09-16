@@ -1,0 +1,133 @@
+/* Main container */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    background-color: #ece5dd;
+    padding: 0;
+}
+
+/* Room container (messages) */
+.room--container {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* padding: 10px; */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Message wrapper */
+.message--wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    min-width: 30%;
+    max-width: 70%;
+    padding-left: 8px;
+    border-radius: 40px 30px 30px 0px;
+    background-color: #fff;
+    align-self: flex-start; /* Default for other users' messages */
+    padding-left: 15px;
+    padding-top: 1px;
+    padding-right: 15px;
+}
+.message-header{
+    width: fit-content;
+}
+/* User's messages aligned to the right */
+.message--owner {
+    background-color: #dcf8c6; /* WhatsApp green */
+    align-self: flex-end; /* Align user's messages to the right */
+    border-radius: 40px 30px 0px 30px;
+    width: auto;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+/* Message header */
+.message--header p{
+    display: flex;
+color: blue;
+    justify-content: space-between;
+    /* margin-bottom: 1px; */
+}
+
+.username {
+    font-weight: bold;
+    color: #341616;
+    font-family: sans-serif;
+}
+.message-date{
+    font-size: 11px;
+    color: #363434;
+}
+.message-time {
+    font-size: 11px;
+    color: #363434;
+    
+   
+}
+
+/* Message body */
+.message--body {
+    font-size: 14px;
+    
+}
+
+.message--body--owner {
+    text-align: left; /* Right align the user's message content */
+}
+
+/* Message form (textarea and send button) */
+#message--form {
+    /* padding: 10px; */
+    background-color: #980000;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+}
+
+.message--input {
+    display: flex;
+    width: 100%;
+    /* padding: 10px; */
+    background-color: #980000;
+    border-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-weight: 800;
+    font: 1em sans-serif;
+}
+
+#message--form textarea {
+    width: 100%;
+    padding: 10px;
+    /* border-radius: 20px; */
+    border: none;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+    
+    background-color: #f0f0f0;
+}
+
+.btn--send {
+    background-color: #25d366; /* WhatsApp send button green */
+    border: none;
+    width: 10vw;
+    /* border-radius: 10%; */
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    /* margin-left: 10px; */
+}
+
+.btn--send:hover {
+    background-color: #0de5cc;
+}
+.container header h2{
+    color: black;
+}
