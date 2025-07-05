@@ -1,0 +1,159 @@
+.chat-input-container {
+    padding: 15px;
+    background-color: #1a2430;
+    border-top: 1px solid #2c3e50;
+    transition: all 0.3s ease;
+}
+
+.chat-input-form {
+    display: flex;
+    align-items: center;
+    background-color: #212d3b;
+    border-radius: 24px;
+    padding: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.chat-input-form:focus-within {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.input-button {
+    background: none;
+    border: none;
+    color: #a8b6c8;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.input-button:hover {
+    color: #4e9cf5;
+    background-color: rgba(78, 156, 245, 0.1);
+}
+
+.input-wrapper {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    padding: 8px 0;
+}
+
+.input-wrapper input::placeholder {
+    color: #a8b6c8;
+}
+
+.send-button {
+    background-color: #4e9cf5;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.send-button.active {
+    opacity: 1;
+}
+
+.send-button:hover {
+    transform: scale(1.05);
+}
+
+/* Emoji picker styles */
+.emoji-picker-container {
+    position: absolute;
+    bottom: 75px;
+    right: 20px;
+    z-index: 100;
+    background-color: #212d3b;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.emoji-picker-container .emoji-mart {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.emoji-categories {
+    display: flex;
+    padding: 8px;
+    overflow-x: auto;
+    background-color: #1a2430;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.emoji-category {
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    color: #a8b6c8;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.emoji-category.active {
+    color: #4e9cf5;
+    background-color: rgba(78, 156, 245, 0.1);
+    border-radius: 12px;
+}
+
+/* Attachment menu */
+.attachment-menu {
+    position: absolute;
+    bottom: 75px;
+    left: 20px;
+    z-index: 100;
+    background-color: #212d3b;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.attachment-item:hover {
+    background-color: #1a2430;
+}
+
+.attachment-icon {
+    margin-right: 10px;
+    color: #4e9cf5;
+}
+
+.attachment-label {
+    color: #fff;
+    font-size: 14px;
+}

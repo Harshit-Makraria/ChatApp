@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../utils/AuthContext';
 import { Link } from 'react-router-dom';
-import './Reg.css'; // Assuming the CSS is in Reg.css
+import './Reg.css';
 
 const RegisterPage = () => {
     const [credentials, setCredentials] = useState({ name: '', email: '', password1: '', password2: '' });
@@ -19,10 +19,10 @@ const RegisterPage = () => {
             <div className="register-shape"></div>
             <div className="register-form--wrapper">
                 <form onSubmit={(e) => handleRegister(e, credentials)} className="register-form">
-                    <h3>Register Here</h3>
+                    <h3>Create Account</h3>
 
                     <div className="register-field--wrapper">
-                        <label>Name:</label>
+                        <label>Name</label>
                         <input 
                             required 
                             type="text" 
@@ -34,7 +34,7 @@ const RegisterPage = () => {
                     </div>
 
                     <div className="register-field--wrapper">
-                        <label>Email:</label>
+                        <label>Email</label>
                         <input 
                             required 
                             type="email" 
@@ -46,7 +46,7 @@ const RegisterPage = () => {
                     </div>
 
                     <div className="register-field--wrapper">
-                        <label>Password:</label>
+                        <label>Password</label>
                         <input 
                             required 
                             type="password" 
@@ -58,7 +58,7 @@ const RegisterPage = () => {
                     </div>
 
                     <div className="register-field--wrapper">
-                        <label>Confirm password:</label>
+                        <label>Confirm Password</label>
                         <input 
                             required 
                             type="password" 
@@ -70,18 +70,18 @@ const RegisterPage = () => {
                     </div>
 
                     <div className="register-field--wrapper">
-                        <input 
-                            className="register-btn--lg register-btn--main disabled" 
-                            type="submit" 
-                            value="Register" 
-                        />
+                        <button 
+                            className="register-btn--lg register-btn--main enabled" 
+                            type="submit"
+                        >
+                            Register
+                        </button>
                     </div>
                 </form>
 
-                <p>Already have an account? Login <Link to="/login">here</Link></p>
+                <p>Already have an account? <Link to="/login">Login here</Link></p>
             </div>
             <div className="register-shape"></div>
-            {/* <div className="register-shape"></div> */}
         </div>
     );
 };

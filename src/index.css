@@ -36,6 +36,33 @@ body{
   margin:20px auto;
 }
 
+/* Header */
+#header--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #1f2937;
+  color: #f3f4f6;
+  border-bottom: 1px solid #374151;
+}
+
+.header-welcome {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.header--link {
+  cursor: pointer;
+  color: #8b5cf6;
+  transition: all 0.3s ease;
+}
+
+.header--link:hover {
+  color: #a78bfa;
+  transform: scale(1.1);
+}
+
 /* Login & Register Pages */
 
 

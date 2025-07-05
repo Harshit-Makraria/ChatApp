@@ -1,0 +1,155 @@
+.error-boundary {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.error-container {
+    max-width: 600px;
+    padding: 40px;
+    background-color: #212d3b;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin: 20px;
+}
+
+.error-icon {
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.error-container h1 {
+    color: #fff;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.error-message {
+    color: #a8b6c8;
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.error-details {
+    text-align: left;
+    background-color: #1a2430;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border-left: 4px solid #4e9cf5;
+}
+
+.error-details h3 {
+    color: #4e9cf5;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.error-details ul {
+    color: #a8b6c8;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.error-details li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.error-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.retry-button, .login-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.retry-button {
+    background-color: #4e9cf5;
+    color: white;
+}
+
+.retry-button:hover {
+    background-color: #3d7fc8;
+}
+
+.login-button {
+    background-color: #2c3e50;
+    color: #a8b6c8;
+}
+
+.login-button:hover {
+    background-color: #34495e;
+    color: #fff;
+}
+
+.error-technical {
+    text-align: left;
+    margin-top: 20px;
+    padding: 16px;
+    background-color: #1a2430;
+    border-radius: 8px;
+}
+
+.error-technical summary {
+    color: #4e9cf5;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.error-technical pre {
+    color: #a8b6c8;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .error-container {
+        padding: 24px;
+        margin: 16px;
+    }
+    
+    .error-container h1 {
+        font-size: 20px;
+    }
+    
+    .error-message {
+        font-size: 14px;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+    }
+    
+    .retry-button, .login-button {
+        width: 100%;
+        justify-content: center;
+    }
+}

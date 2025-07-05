@@ -4,30 +4,36 @@ import LoginPage from './pages/LoginPage'
 import Room from './pages/Room'
 import PrivateRoutes from './utils/PrivateRoutes'
 import { AuthProvider } from './utils/AuthContext'
-// import Header from './components/Header'
 import RegisterPage from './pages/RegisterPage'
 import VerifyPage from './pages/VerifyPage'
+import EnvDebug from './components/EnvDebug'
+import ErrorBoundary from './components/ErrorBoundary'
+import './App.css'
 
 const App = () => {
   return (
-    <div>
-
-      <Router>
-        <AuthProvider>
-        <Routes>
-          
-          <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/verify' element={<VerifyPage/>}/>
-          <Route path='/register' element={<RegisterPage/>}/>
-          
-        <Route element={<PrivateRoutes/>}>  
-          <Route path='/' element={<Room/>}/>
-        </Route>
-        </Routes>
-        </AuthProvider>
-      </Router>
-    </div>
+    <ErrorBoundary>
+      <div className="app-container">
+        <Router>
+          <AuthProvider>
+            <Routes>
+              <Route path='/login' element={<LoginPage/>}/>
+              <Route path='/verify' element={<VerifyPage/>}/>
+              <Route path='/register' element={<RegisterPage/>}/>
+              
+              <Route element={<PrivateRoutes/>}>  
+                <Route path='/' element={<Room/>}/>
+                <Route path='/chat/:chatId' element={<Room/>}/>
+                <Route path='/group/:groupId' element={<Room/>}/>
+              </Route>
+            </Routes>
+          </AuthProvider>
+        </Router>
+        <EnvDebug />
+      </div>
+    </ErrorBoundary>
   )
 }
 
 export default App
+

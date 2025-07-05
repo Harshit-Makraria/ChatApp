@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Account } from 'appwrite';
 import client from '../appwriteConfig';
-
+import "./Spinner.css"
 const account = new Account(client);
 
 const VerifyPage = () => {
@@ -33,7 +33,9 @@ const VerifyPage = () => {
 
     return (
         <div>
-            Verifying your email...
+            <div className="centered-spinner">
+        <div className="spinner"></div>
+        </div>
         </div>
     );
 };

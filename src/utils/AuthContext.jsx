@@ -1,40 +1,104 @@
     import { createContext, useState, useEffect, useContext } from "react";
-    import { account } from "../appwriteConfig";
+    import { account, createUserProfile, getUserProfile, updateUserOnlineStatus } from "../appwriteConfig";
     import { useNavigate } from "react-router-dom";
     import { ID } from "appwrite";
-    const AuthContext = createContext()
+    
+    const AuthContext = createContext();
 
-
-    export const AuthProvider = ({children}) =>{
+    export const AuthProvider = ({children}) => {
         const [authToken, setAuthToken] = useState(null);
-        const navigate = useNavigate()
-        const [user, setUser] = useState(null)
-        const [loading, setLoading] = useState(true)
-
+        const navigate = useNavigate();
+        const [user, setUser] = useState(null);
+        const [userProfile, setUserProfile] = useState(null);
+        const [loading, setLoading] = useState(true);
 
         useEffect(() => {
-            
             getUserOnLoad();
-        },[])
-        
+            
+            // Handle page unload to set user offline
+            const handleBeforeUnload = () => {
+                if (user) {
+                    updateUserOnlineStatus(user.$id, false);
+                }
+            };
+            
+            window.addEventListener('beforeunload', handleBeforeUnload);
+            
+            return () => {
+                window.removeEventListener('beforeunload', handleBeforeUnload);
+            };
+        }, []);
+
+        useEffect(() => {
+            if (user) {
+                loadUserProfile();
+                updateUserOnlineStatus(user.$id, true);
+            }
+        }, [user]);
+
         const getUserOnLoad = async () => {
             try {
+                console.log('Attempting to get user session...');
                 let accountDetails = await account.get();
+                console.log('User session found:', accountDetails);
                 setUser(accountDetails);
-            } catch (error) {}
+            } catch (error) {
+                console.log("No active session:", error.message);
+                setUser(null);
+            }
             setLoading(false);
+        };
+
+        const loadUserProfile = async () => {
+            if (!user || !user.$id) {
+                console.error('No user ID available for profile loading');
+                return;
+            }
+
+            try {
+                console.log('Loading user profile for:', user.$id);
+                const profile = await getUserProfile(user.$id);
+                console.log('User profile loaded:', profile);
+                setUserProfile(profile);
+            } catch (error) {
+                console.log('Profile not found, creating new one:', error.message);
+                // Profile doesn't exist, create one
+                try {
+                    const profileData = {
+                        name: user.name || 'Unknown User',
+                        email: user.email || '',
+                        is_online: true,
+                        last_seen: new Date().toISOString(),
+                        avatar_url: null,
+                        bio: ''
+                    };
+                    console.log('Creating user profile with data:', profileData);
+                    const newProfile = await createUserProfile(user.$id, profileData);
+                    console.log('User profile created:', newProfile);
+                    setUserProfile(newProfile);
+                } catch (createError) {
+                    console.error("Error creating user profile:", createError);
+                    // Set a fallback profile to prevent app from breaking
+                    setUserProfile({
+                        $id: user.$id,
+                        name: user.name || 'Unknown User',
+                        email: user.email || '',
+                        is_online: true,
+                        last_seen: new Date().toISOString()
+                    });
+                }
+            }
         };
 
         const handleUserLogin = async (e, credentials) => {
             e.preventDefault();
-            // console.log("CREDS:", credentials);
 
             try {
-            let response = await account.createEmailPasswordSession(
+                let response = await account.createEmailPasswordSession(
                     credentials.email,
                     credentials.password,
                 );
-                console.log("logged in",response)
+                console.log("logged in", response);
                 const accountDetails = await account.get();
                 setUser(accountDetails);
                 navigate("/");
@@ -42,9 +106,14 @@
                 console.error(error);
             }
         };
+        
         const handleLogout = async () => {
+            if (user) {
+                await updateUserOnlineStatus(user.$id, false);
+            }
             const response = await account.deleteSession("current");
             setUser(null);
+            setUserProfile(null);
         };
 
         const handleRegister = async (e, credentials) => {
@@ -75,6 +144,7 @@
 
         const contextData = {
             user,
+            userProfile,
             handleUserLogin,
             handleLogout,
             handleRegister,

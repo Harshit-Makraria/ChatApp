@@ -29,14 +29,13 @@ const LoginPage = () => {
 
   return (
     <div className="login-background">
-      {/* <div className="login-shape bg-yellow-300"></div> */}
       <div className="login-shape"></div>
-      <div className="login-form--wrapper ">
+      <div className="login-form--wrapper">
         <form onSubmit={(e) => handleUserLogin(e, credentials)} className="login-form">
-          <h3>Login Here</h3>
+          <h3>Welcome Back</h3>
 
           <div className="field--wrapper">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email</label>
             <input
               required
               type="email"
@@ -49,7 +48,7 @@ const LoginPage = () => {
           </div>
 
           <div className="field--wrapper">
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Password</label>
             <input
               required
               type="password"
@@ -62,18 +61,18 @@ const LoginPage = () => {
           </div>
 
           <div className="field--wrapper">
-            <input
+            <button
               type="submit"
-              value="Login"
-              className={`btn btn--lg btn--main ${isButtonEnabled ? 'enabled' : 'disabled'}`}
               disabled={!isButtonEnabled}
-            />
-           
+              className={`btn btn--lg btn--main ${isButtonEnabled ? 'enabled' : 'disabled'}`}
+            >
+              Login
+            </button>
           </div>
            
         </form>
 
-        <p>Don't have an account? Register <Link to="/register">here</Link></p>
+        <p>Don't have an account? <Link to="/register">Register here</Link></p>
         
       </div>
       <div className="login-shape"></div>
